@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrate test</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+
+    <div id="ton-connect" style="float: right;"></div>
+
+    <script>
+        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            manifestUrl: 'https://bkzly8385.github.io/integ/test.json',
+            buttonRootId: 'ton-connect'
+        });
+        function trans() {
+            const transaction = {
+                messages: [
+                    {
+                        address: "UQBaY9MJtmQisB1A0ifjOvyyO0ImDLcnEmm0AebNfE5DjArx", // 目的地址
+                        amount: "20000000", //以nanotons计的Toncoin
+                        bounce: false, //如果目的地址不存在，是否退回
+                        payload: "te6ccgEBAgEABgA=" // 交易载荷
+                    }
+                ]
+            }
+
+            const result = tonConnectUI.sendTransaction(transaction);
+            result.then((res) => {
+                alert(res);
+            }).catch((err) => {
+                alert(err);
+            });
+        }
+
+    </script>
+
+<div id="transton" onclick=trans() style="width:100px; height:50px; border:1px solid black;">Click me</div>
+
+</body>
+
+</html>
