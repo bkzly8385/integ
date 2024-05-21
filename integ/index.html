@@ -9,21 +9,32 @@
 
 <body>
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@ton/core@0.56.3/dist/index.js"></script> 确保正确加载 TON SDK -->
+    <script src="./tonweb.js"></script>
     <div id="ton-connect" style="float: right;"></div>
 
-    <script>
+    <script type="module">
+        let a = new TonWeb.boc.Cell();
+        a.bits.writeUint(0, 32);
+        a.bits.writeString("写一下数据到区块链，以便后台验证。");
+        let payload = TonWeb.utils.bytesToBase64(await a.toBoc());
+        // alert(payload)
+
         const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
             manifestUrl: 'https://bkzly8385.github.io/integ/integ/test.json',
             buttonRootId: 'ton-connect'
         });
         function trans() {
+            // add a comment in transaction
+
             const transaction = {
                 validUntil: 999999999999999,
                 messages: [
                     {
                         address: "UQBaY9MJtmQisB1A0ifjOvyyO0ImDLcnEmm0AebNfE5DjArx", // 目的地址
-                        amount: "20000000", //以nanotons计的Toncoin
+                        amount: "10000000", //以nanotons计的Toncoin
+                        payload: payload
+                        // payload: body.toBoc().toString("base64") // 载荷
                     }
                 ]
             }
@@ -36,9 +47,11 @@
             });
         }
 
+        document.getElementById('transton').addEventListener('click', trans);
+
     </script>
 
-<button id="transton" onclick=trans() style="width:100px; height:50px; border:1px solid black;">Click me sendTON</button>
+<button id="transton"  style="width:100px; height:50px; border:1px solid black;">Click me sendTONN</button>
 
 </body>
 
