@@ -9,15 +9,12 @@
 <body>
     <h1>Telegram Web App Share Example</h1>
     <button id="shareButton">Share with Telegram Friends</button>
-    <button id="photoButton">getPhototest</button>
+    <!-- <button id="photoButton">getPhototest</button> -->
 
     <p id="startappValue">StartApp Value: </p>
     <script>
         const tg = window.Telegram.WebApp;
 
-        function getPhototest() {
-            alert(JSON.stringify(tg.initDataUnsafe.user))
-        }
 
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -34,7 +31,7 @@
 
         document.getElementById("shareButton").addEventListener("click", shareContent);
 
-        document.getElementById("photoButton").addEventListener("click", getPhototest);
+        // document.getElementById("photoButton").addEventListener("click", getPhototest);
     </script>
 </body>
 </html>
