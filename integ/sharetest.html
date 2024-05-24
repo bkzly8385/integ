@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App Share Example</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <h1>Telegram Web App Share Example</h1>
+    <button id="shareButton">Share with Contact</button>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+
+        function requestContact() {
+            tg.requestContact(function(contact) {
+                if (contact) {
+                    // Prepare your share message
+                    const shareMessage = {
+                        chat_id: contact.user_id,
+                        text: "Check out this awesome content!",
+                        // Add any other fields you need for your message
+                    };
+
+                    // You can send the message using Telegram's sendMessage API
+                    // Note: You'll need a backend server to send the actual request to Telegram API
+
+                    console.log("Contact info:", contact);
+                    console.log("Prepared message:", shareMessage);
+                } else {
+                    console.log("Contact request was cancelled or failed.");
+                }
+            });
+        }
+
+        document.getElementById("shareButton").addEventListener("click", requestContact);
+    </script>
+</body>
+</html>
