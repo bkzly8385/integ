@@ -17,7 +17,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
-
+        alert(window.location.search)
         const startAppValue = getQueryParam('startapp');
         document.getElementById('startappValue').innerText += startAppValue;
 
