@@ -8,14 +8,23 @@
 </head>
 <body>
     <h1>Telegram Web App Share Example</h1>
+    <p id="startappValue">StartApp Value: </p>
     <button id="shareButton">Share with Telegram Friends</button>
 
     <script>
         const tg = window.Telegram.WebApp;
 
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const startAppValue = getQueryParam('startapp');
+        document.getElementById('startappValue').innerText += startAppValue;
+
         function shareContent() {
-            const contentUrl = "https://t.me/funtest0415bot/mytest?startapp=rp_123455"; // 替换为你实际的内容URL
-            tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(contentUrl)}&text=${encodeURIComponent("Dogup: Unleash, Play, Earn - Where Every Game Leads to an Airdrop Adventure!🎁Let's play-to-earn airdrop right now!")}`);
+            const contentUrl = window.location.href; // 当前页面的URL
+            tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(contentUrl)}&text=${encodeURIComponent("Dogup: Unleash, Play, Earn - Where Every Game Leads to an Airdrop Adventure!🎁 Let's play-to-earn airdrop right now!")}`);
         }
 
         document.getElementById("shareButton").addEventListener("click", shareContent);
