@@ -17,8 +17,8 @@
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
-        alert(window.location.search)
-        const startAppValue = getQueryParam('startapp');
+        // alert(window.location.search)
+        const startAppValue = getQueryParam('tgWebAppStartParam');
         document.getElementById('startappValue').innerText += startAppValue;
 
         function shareContent() {
